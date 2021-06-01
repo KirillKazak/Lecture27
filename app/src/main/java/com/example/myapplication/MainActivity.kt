@@ -32,8 +32,9 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onResponse(call: Call<List<Post>>?, response: Response<List<Post>>?) {
-                if (response?.body()!=null)
-                recyclerAdapter.setPostListItems((response.body() as MutableList<Post>?)!!)
+                response?.body()?.let {
+                    recyclerAdapter.setPostListItems(it as MutableList<Post>)
+                }
             }
         })
     }
